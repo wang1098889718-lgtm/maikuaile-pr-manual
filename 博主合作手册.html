@@ -12,364 +12,592 @@
     --purple-light: #f5f0ff;
     --gold: #f59e0b;
     --gold-light: #fffbeb;
+    --blue: #3b82f6;
+    --blue-light: #eff6ff;
+    --red: #ef4444;
+    --red-light: #fef2f2;
+    --green: #10b981;
+    --green-light: #ecfdf5;
     --text: #1a1a2e;
     --muted: #6b7280;
     --bg: #faf9ff;
     --card: #ffffff;
     --border: #f0e6f6;
     --shadow: 0 4px 20px rgba(124,58,237,0.06);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.8;
+    background: var(--bg); color: var(--text); line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Cover */
+  /* ── Cover ── */
   .cover {
-    background: linear-gradient(135deg, #fdf2f8 0%, #faf5ff 50%, #f0f9ff 100%);
-    text-align: center;
-    padding: 64px 24px 48px;
-    position: relative;
+    background: linear-gradient(160deg, #fdf2f8 0%, #faf5ff 40%, #f0f9ff 100%);
+    text-align: center; padding: 56px 24px 44px; position: relative; overflow: hidden;
   }
-  .cover-emoji { font-size: 56px; display: block; margin-bottom: 12px; }
+  .cover::after {
+    content: ""; position: absolute; bottom: -30px; right: -30px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(232,93,154,0.06);
+  }
+  .cover-emoji { font-size: 52px; display: block; margin-bottom: 10px; position: relative; z-index: 1; }
   .cover h1 {
-    font-size: 2.2rem; font-weight: 800;
+    font-size: 2rem; font-weight: 800;
     background: linear-gradient(135deg, #e85d9a, #7c3aed);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
+    background-clip: text; position: relative; z-index: 1;
   }
-  .cover .tagline { font-size: 1.15rem; color: var(--muted); }
-  .cover .highlight-box {
-    display: inline-block; margin-top: 20px;
-    background: white; border-radius: 20px; padding: 12px 28px;
-    box-shadow: 0 2px 16px rgba(232,93,154,0.12);
-    font-weight: 700; color: var(--pink); font-size: 1.05rem;
+  .cover .tagline { font-size: 1rem; color: var(--muted); margin-top: 6px; position: relative; z-index: 1; }
+  .cover .badge-row {
+    display: flex; justify-content: center; gap: 10px; margin-top: 18px;
+    flex-wrap: wrap; position: relative; z-index: 1;
   }
+  .cover .badge {
+    background: white; border-radius: 20px; padding: 8px 18px;
+    font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .badge-pink { color: var(--pink); }
+  .badge-purple { color: var(--purple); }
+  .badge-gold { color: #d97706; }
 
-  .container { max-width: 720px; margin: 0 auto; padding: 32px 20px 80px; }
+  .container { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
 
-  /* Hero stat */
-  .hero-stat {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; margin: 24px 0;
-  }
-  .stat-item {
-    background: white; border-radius: 16px; padding: 20px 12px;
-    text-align: center; box-shadow: var(--shadow);
-  }
-  .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--purple); }
-  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
-
-  /* Sections */
-  section { margin-bottom: 40px; }
+  /* ── Sections ── */
+  section { margin-bottom: 44px; }
   h2 {
-    font-size: 1.5rem; font-weight: 700; color: var(--purple);
-    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    font-size: 1.4rem; font-weight: 700; color: var(--purple);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
   }
+  h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 20px 0 10px; }
 
-  /* Cards */
+  /* ── Cards ── */
   .card {
-    background: white; border-radius: 16px; padding: 24px;
-    box-shadow: var(--shadow); margin: 16px 0;
-    border: 1px solid var(--border);
+    background: white; border-radius: 14px; padding: 20px 22px;
+    box-shadow: var(--shadow); margin: 12px 0; border: 1px solid var(--border);
   }
   .card-pink { border-left: 4px solid var(--pink); }
   .card-purple { border-left: 4px solid var(--purple); }
   .card-gold { border-left: 4px solid var(--gold); }
+  .card-blue { border-left: 4px solid var(--blue); }
+  .card-red { border-left: 4px solid var(--red); }
+  .card-green { border-left: 4px solid var(--green); }
 
-  /* Steps */
-  .steps { display: grid; gap: 12px; margin: 16px 0; }
-  .step {
-    display: flex; gap: 14px; align-items: flex-start;
-    background: white; border-radius: 12px; padding: 16px;
-    box-shadow: var(--shadow);
+  /* ── Phone mock ── */
+  .phone-mock {
+    background: #1a1a2e; border-radius: 16px; padding: 18px;
+    margin: 16px auto; max-width: 360px; color: white;
   }
-  .step-num {
-    width: 36px; height: 36px; border-radius: 50%;
+  .phone-mock .profile {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .phone-mock .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
     background: linear-gradient(135deg, #e85d9a, #a855f7);
-    color: white; display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 1rem; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
   }
-  .step-content h4 { font-size: 1rem; color: var(--text); margin-bottom: 2px; }
-  .step-content p { font-size: 0.9rem; color: var(--muted); }
+  .phone-mock .name { font-weight: 700; font-size: 0.9rem; }
+  .phone-mock .sub { font-size: 0.7rem; color: #94a3b8; }
+  .phone-mock .bio {
+    background: rgba(255,255,255,0.06); border-radius: 10px;
+    padding: 14px; font-size: 0.88rem; line-height: 1.8; text-align: center;
+  }
+  .phone-mock .bio .num { color: #fbbf24; font-weight: 700; }
+  .phone-mock .arrow {
+    text-align: center; color: #64748b; font-size: 0.75rem; margin: 10px 0;
+  }
+  .phone-mock .result {
+    background: rgba(124,58,237,0.15); border-radius: 10px;
+    padding: 10px; text-align: center; font-size: 0.82rem;
+  }
 
-  /* Code block */
+  /* ── Code block ── */
   .code-block {
-    background: #1a1a2e; border-radius: 12px; padding: 20px 24px;
-    margin: 12px 0; color: white; font-size: 1.05rem;
-    line-height: 1.9; position: relative; text-align: center;
+    background: #1a1a2e; border-radius: 12px; padding: 18px 22px;
+    margin: 10px 0; color: white; font-size: 1rem;
+    line-height: 1.9; text-align: center; position: relative;
   }
-  .code-block .highlight-num { color: #fbbf24; font-weight: 700; }
+  .code-block .num { color: #fbbf24; font-weight: 700; }
   .code-block .copy-btn {
-    position: absolute; top: 10px; right: 14px;
-    font-size: 0.75rem; padding: 5px 14px;
-    background: rgba(255,255,255,0.15); color: white;
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+    position: absolute; top: 8px; right: 12px;
+    font-size: 0.7rem; padding: 4px 12px;
+    background: rgba(255,255,255,0.12); color: white;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 20px;
     cursor: pointer; opacity: 0; transition: opacity 0.2s;
   }
   .code-block:hover .copy-btn { opacity: 1; }
 
-  /* Money */
-  .money-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-    margin: 16px 0;
+  /* ── Steps ── */
+  .steps { display: grid; gap: 10px; margin: 14px 0; }
+  .step {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: white; border-radius: 12px; padding: 16px; box-shadow: var(--shadow);
   }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, #e85d9a, #a855f7);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 0.95rem; margin-bottom: 2px; }
+  .step-content p { font-size: 0.85rem; color: var(--muted); }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 12px 0; border-radius: 10px; box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 500px; }
+  thead { background: var(--purple); }
+  thead th { color: white; font-weight: 700; padding: 10px 14px; text-align: center; font-size: 0.85rem; }
+  tbody td { padding: 10px 14px; text-align: center; border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: #faf5ff; }
+  tbody tr:nth-child(odd) { background: white; }
+  .highlight { color: var(--pink); font-weight: 700; }
+
+  /* ── Money cards ── */
+  .money-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
   .money-card {
     text-align: center; background: white; border-radius: 12px;
     padding: 16px 8px; box-shadow: var(--shadow);
   }
-  .money-card .level { font-size: 1.5rem; }
-  .money-card .amount { font-size: 1.3rem; font-weight: 800; color: var(--pink); margin: 6px 0; }
-  .money-card .condition { font-size: 0.8rem; color: var(--muted); }
+  .money-card .lv { font-size: 1.3rem; }
+  .money-card .amt { font-size: 1.2rem; font-weight: 800; color: var(--pink); margin: 4px 0; }
+  .money-card .cond { font-size: 0.78rem; color: var(--muted); }
 
-  /* Phone mock */
-  .phone-mock {
-    background: #1a1a2e; border-radius: 16px; padding: 20px;
-    margin: 16px auto; max-width: 340px; color: white;
+  /* ── Difficulty cards ── */
+  .diff-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+  .diff-card {
+    background: white; border-radius: 12px; padding: 16px 10px;
+    text-align: center; box-shadow: var(--shadow); border: 1px solid var(--border);
   }
-  .phone-mock .profile {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  .diff-card .d-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 700; margin-bottom: 6px;
   }
-  .phone-mock .avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, #e85d9a, #a855f7);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
+  .d-bronze { background: #fef3c7; color: #92400e; }
+  .d-gold { background: #fef3c7; color: #92400e; }
+  .d-diamond { background: #dbeafe; color: #1e40af; }
+  .diff-card .d-time { font-size: 1.15rem; font-weight: 800; color: var(--pink); }
+  .diff-card .d-desc { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 6px 0 6px 26px; position: relative; font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
   }
-  .phone-mock .name { font-weight: 700; font-size: 0.95rem; }
-  .phone-mock .sub { font-size: 0.75rem; color: #94a3b8; }
-  .phone-mock .bio {
-    background: rgba(255,255,255,0.06); border-radius: 10px;
-    padding: 14px; font-size: 0.9rem; line-height: 1.8; text-align: center;
-  }
-  .phone-mock .bio .num { color: #fbbf24; font-weight: 700; }
-  .phone-mock .arrow {
-    text-align: center; color: #64748b; font-size: 0.8rem;
-    margin: 10px 0;
-  }
-  .phone-mock .result {
-    background: rgba(124,58,237,0.15); border-radius: 10px;
-    padding: 12px; text-align: center; font-size: 0.85rem;
+  .checklist li::before {
+    content: "☐"; position: absolute; left: 2px; color: var(--muted); font-size: 1rem;
   }
 
-  /* FAQ */
+  /* ── FAQ ── */
   .faq-item {
-    background: white; border-radius: 12px; padding: 16px 20px;
-    margin: 8px 0; box-shadow: var(--shadow);
-    border-left: 3px solid var(--purple-light);
+    background: white; border-radius: 10px; padding: 14px 18px;
+    margin: 6px 0; box-shadow: var(--shadow); border-left: 3px solid var(--purple-light);
   }
-  .faq-item .q { font-weight: 700; color: var(--purple); font-size: 0.95rem; }
-  .faq-item .a { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .faq-item .q { font-weight: 700; color: var(--purple); font-size: 0.9rem; }
+  .faq-item .a { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
 
-  /* CTA */
+  /* ── Tips grid ── */
+  .tips-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 12px 0; }
+  .tip-card {
+    background: white; border-radius: 10px; padding: 14px; box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .tip-card h4 { font-size: 0.9rem; margin: 0 0 6px; display: flex; align-items: center; gap: 4px; }
+  .tip-card p, .tip-card li { font-size: 0.82rem; color: var(--muted); margin: 2px 0; }
+
+  /* ── Callout ── */
+  .callout {
+    background: var(--pink-light); border-left: 4px solid var(--pink);
+    padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 12px 0;
+    font-size: 0.9rem; color: #9b2c5b;
+  }
+  .callout-blue {
+    background: var(--blue-light); border-left: 4px solid var(--blue);
+    padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 12px 0;
+    font-size: 0.9rem; color: #1e40af;
+  }
+  .callout-red {
+    background: var(--red-light); border-left: 4px solid var(--red);
+    padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 10px 0;
+    font-size: 0.85rem; color: #b91c1c;
+  }
+
+  /* ── CTA ── */
   .cta {
     background: linear-gradient(135deg, #e85d9a, #7c3aed);
-    color: white; border-radius: 16px; padding: 32px 24px;
-    text-align: center; margin: 32px 0;
+    color: white; border-radius: 16px; padding: 30px 22px;
+    text-align: center; margin: 36px 0; box-shadow: 0 8px 30px rgba(124,58,237,0.2);
   }
-  .cta h3 { font-size: 1.3rem; margin-bottom: 8px; }
-  .cta p { opacity: 0.9; font-size: 0.95rem; margin-bottom: 16px; }
+  .cta h3 { font-size: 1.2rem; color: white; margin-bottom: 6px; }
+  .cta p { opacity: 0.9; font-size: 0.9rem; }
 
-  /* Divider */
-  .divider { text-align: center; color: var(--border); margin: 32px 0; font-size: 1.2rem; }
-
-  .footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 32px 0; }
+  .divider { text-align: center; color: var(--border); margin: 36px 0; font-size: 1rem; }
+  .footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 32px 0 16px; }
 
   @media (max-width: 500px) {
-    .cover h1 { font-size: 1.7rem; }
-    .hero-stat { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .stat-num { font-size: 1.4rem; }
-    .money-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .money-card .amount { font-size: 1.1rem; }
+    .cover h1 { font-size: 1.6rem; }
+    .money-row, .diff-row { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .money-card .amt { font-size: 1rem; }
+    .diff-card .d-time { font-size: 1rem; }
+    .tips-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- ══════ COVER ══════ -->
 <div class="cover">
   <span class="cover-emoji">💅</span>
   <h1>颜值博主 · 轻松变现计划</h1>
-  <p class="tagline">不用直播、不用带货、不用露脸打游戏</p>
-  <div class="highlight-box">📌 改个签就行，其他什么都不用管</div>
+  <p class="tagline">改个签就行，什么都不用管，每周一收钱</p>
+  <div class="badge-row">
+    <span class="badge badge-pink">🕐 每天 30 秒</span>
+    <span class="badge badge-purple">💰 持续分润 4%</span>
+    <span class="badge badge-gold">🛡 不封号不伤粉</span>
+  </div>
 </div>
 
 <div class="container">
 
-<!-- Stats -->
-<div class="hero-stat">
-  <div class="stat-item">
-    <div class="stat-num">30秒</div>
-    <div class="stat-label">每天耗时</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">0元</div>
-    <div class="stat-label">启动成本</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">躺赚</div>
-    <div class="stat-label">持续收益</div>
-  </div>
-</div>
-
-<!-- ═══ What ═══ -->
+<!-- ══════ 这是什么 ══════ -->
 <section>
-  <h2>💡 这是什么？</h2>
+  <h2>💡 一句话说清楚</h2>
   <div class="card card-pink">
-    <p style="font-size: 1.05rem; line-height: 1.9;">
-      你只需要在自己的<strong>视频号 / 抖音 / 微信个签</strong>上放一句话，<br>
-      粉丝看到了 → 搜公众号 → 自动进游戏搭子群 → <strong style="color: var(--pink);">你拿流水的 4%</strong>。
+    <p style="font-size: 1.05rem; line-height: 2;">
+      你只需要在<strong>视频号 / 抖音 / 微信个签</strong>上放一句话。<br>
+      粉丝看到 → 搜「麦快乐」公众号 → 输入<strong style="color:var(--pink);">你的专属编号</strong> → 自动进游戏搭子群。<br>
+      粉丝消费 → <strong style="color:var(--pink);">你拿流水的 4%，持续分润。</strong>
     </p>
-    <p style="color: var(--muted); font-size: 0.9rem; margin-top: 8px;">
-      后面的事：客服介绍、匹配陪玩、收款、售后，全部由麦快乐团队完成。你什么都不用管。
+    <p style="color: var(--muted); font-size: 0.85rem; margin-top: 8px;">
+      客服介绍、匹配陪玩、收款、售后——麦快乐团队全包。你只负责引流。
     </p>
   </div>
 </section>
 
-<!-- ═══ How ═══ -->
+<!-- ══════ 个签效果 ══════ -->
 <section>
-  <h2>🪞 个签长什么样？</h2>
-  <p style="color: var(--muted); margin-bottom: 12px;">就一句话，改完就行：</p>
+  <h2>🪞 你的个签长这样</h2>
+  <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 10px;">每个博主一个专属编号，复制粘贴改编号就行：</p>
   <div class="code-block">
     <button class="copy-btn" onclick="copyBlock(this)">复制</button>
-    点我陪 🥣🔍 公棕🎺：麦快乐（输入 <span class="highlight-num">14625</span>）
+    点我陪 🥣🔍 公棕🎺：麦快乐（输入 <span class="num">14625</span>）
   </div>
-  <p style="text-align: center; color: var(--muted); font-size: 0.85rem; margin-bottom: 16px;">
-    ↑ 你的专属编号，每个博主不同。粉丝输入这个编号进群，收益就归你。
-  </p>
 
-  <h3 style="font-size: 1.05rem; color: var(--purple); margin-bottom: 8px;">📱 粉丝看到的效果</h3>
+  <h3 style="font-size: 0.95rem; color: var(--purple); margin: 16px 0 8px;">📱 粉丝视角全流程</h3>
   <div class="phone-mock">
     <div class="profile">
       <div class="avatar">🎮</div>
-      <div>
-        <div class="name">麦快乐游戏搭子</div>
-        <div class="sub">视频号 · 游戏博主</div>
-      </div>
+      <div><div class="name">你的视频号主页</div><div class="sub">粉丝浏览你的简介</div></div>
     </div>
     <div class="bio">
       点我陪 🥣🔍 公棕🎺：麦快乐（输入 <span class="num">14625</span>）
     </div>
-    <div class="arrow">👇 粉丝搜公众号后发送编号</div>
+    <div class="arrow">👇 粉丝微信搜「麦快乐」→ 关注公众号 → 发送 14625</div>
     <div class="result">
-      ✅ 自动弹出群二维码 → 粉丝扫码进群 → <strong style="color:#fbbf24;">收益归你</strong>
+      ⚡ 公众号自动回复群二维码 → 粉丝扫码进群 → <strong style="color:#fbbf24;">系统记录：该粉丝来自你的编号</strong>
     </div>
   </div>
+  <p style="text-align:center; font-size:0.82rem; color:var(--muted); margin-top:8px;">
+    全程自动化，不需要你手动拉人、发码、解释
+  </p>
 </section>
 
-<!-- ═══ 3 Steps ═══ -->
+<!-- ══════ 三步开始 ══════ -->
 <section>
-  <h2>✨ 三步开始</h2>
+  <h2>✨ 三步开始赚钱</h2>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-content">
-        <h4>联系群主，拿专属编号</h4>
-        <p>群主给你分配一个数字编号（如 14625），这个编号就是你的"收款码"</p>
+        <h4>找群主领编号</h4>
+        <p>进推客群，群主给你分配专属数字编号（如 14625）</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-content">
-        <h4>改个签，30秒搞定</h4>
-        <p>复制个签文案，把编号换成你的，贴到视频号/抖音/微信简介</p>
+        <h4>改个签（30 秒）</h4>
+        <p>复制上面那句个签，把编号换成你的，贴到各平台简介</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-content">
         <h4>坐等收钱</h4>
-        <p>粉丝通过你的编号进群消费 → 每周一支付宝自动到账流水的 4%</p>
+        <p>粉丝通过你的编号进群消费 → 每周一支付宝自动到账</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ Money ═══ -->
+<!-- ══════ 能赚多少 ══════ -->
 <section>
   <h2>💰 能赚多少？</h2>
-  <div class="money-grid">
+  <div class="money-row">
     <div class="money-card">
-      <div class="level">🌱 随便挂挂</div>
-      <div class="amount">80元/月</div>
-      <div class="condition">10个粉丝进群消费</div>
+      <div class="lv">🌱</div>
+      <div class="amt">80元/月</div>
+      <div class="cond">10个粉丝消费</div>
     </div>
     <div class="money-card">
-      <div class="level">🌸 偶尔提一嘴</div>
-      <div class="amount">400元/月</div>
-      <div class="condition">50个粉丝进群消费</div>
+      <div class="lv">🌸</div>
+      <div class="amt">400元/月</div>
+      <div class="cond">50个粉丝消费</div>
     </div>
     <div class="money-card">
-      <div class="level">🔥 认真做</div>
-      <div class="amount">1,600元/月</div>
-      <div class="condition">200个粉丝进群消费</div>
+      <div class="lv">🔥</div>
+      <div class="amt">1,600元/月</div>
+      <div class="cond">200个粉丝消费</div>
     </div>
+  </div>
+  <div class="card card-gold" style="text-align:center;">
+    <strong style="color:#d97706;">💡 这是被动收入——粉丝持续消费，你持续拿钱，不是一次性的</strong>
   </div>
 
-  <div class="card card-gold" style="margin-top: 16px;">
-    <p style="text-align: center; font-weight: 700; color: var(--gold);">
-      💡 这是<strong>被动收入</strong>——粉丝持续消费，你持续拿钱，不是一次性的
-    </p>
+  <div class="table-wrap" style="margin-top:14px;">
+    <table>
+      <thead><tr><th>你的付费粉丝</th><th>每人月消费</th><th>你每月躺赚</th><th>每年躺赚</th></tr></thead>
+      <tbody>
+        <tr><td>10 人</td><td>200 元</td><td class="highlight">80 元</td><td>960 元</td></tr>
+        <tr><td>30 人</td><td>200 元</td><td class="highlight">240 元</td><td>2,880 元</td></tr>
+        <tr><td>50 人</td><td>200 元</td><td class="highlight">400 元</td><td>4,800 元</td></tr>
+        <tr><td>100 人</td><td>200 元</td><td class="highlight">800 元</td><td>9,600 元</td></tr>
+        <tr><td>200 人</td><td>200 元</td><td class="highlight">1,600 元</td><td>19,200 元</td></tr>
+      </tbody>
+    </table>
   </div>
+  <p style="text-align:center; font-size:0.82rem; color:var(--muted); margin-top:6px;">
+    每周一支付宝转账，不拖欠
+  </p>
 </section>
 
-<!-- ═══ Why safe ═══ -->
+<!-- ══════ 为什么放心 ══════ -->
 <section>
   <h2>🛡 为什么放心？</h2>
   <div class="card card-purple">
-    <ul style="list-style: none; padding: 0; line-height: 2.2;">
-      <li>✅ <strong>不暴露你的微信</strong>——个签只引导到公众号，不会封号</li>
-      <li>✅ <strong>不用你聊天</strong>——客服帮你对接所有粉丝</li>
-      <li>✅ <strong>不用你打游戏</strong>——有专业陪玩师负责交付</li>
-      <li>✅ <strong>不用你收钱</strong>——平台统一收款，每周一自动分账</li>
-      <li>✅ <strong>不影响你的人设</strong>——个签很软，粉丝不会觉得你在打广告</li>
-      <li>✅ <strong>随时可以停</strong>——不想做了改掉个签就行，没有任何绑定</li>
+    <ul style="list-style:none; padding:0; line-height:2.3; font-size:0.9rem;">
+      <li>✅ <strong>不暴露你的微信</strong>——个签只引导公众号，不挂微信号/二维码/链接</li>
+      <li>✅ <strong>不用你聊天</strong>——客服帮你对接所有粉丝，你一句话不用说</li>
+      <li>✅ <strong>不用你打游戏</strong>——2000+ 颜值博主陪玩师负责交付</li>
+      <li>✅ <strong>不用你收钱</strong>——平台统一收款，每周一自动分账到你支付宝</li>
+      <li>✅ <strong>不影响人设</strong>——个签很软，"点我陪"三个字，粉丝不反感</li>
+      <li>✅ <strong>随时可停</strong>——不想做了改掉个签就行，零绑定零违约</li>
     </ul>
   </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
+<!-- ══════ 三种模式 ══════ -->
 <section>
-  <h2>🙋 你可能想问</h2>
-  <div class="faq-item">
-    <div class="q">Q：需要我露脸打游戏吗？</div>
-    <div class="a">不需要。你只负责引流，陪玩交付由麦快乐的陪玩师完成。</div>
+  <h2>🎯 三种参与方式，选你舒服的</h2>
+  <div class="diff-row">
+    <div class="diff-card">
+      <span class="d-badge d-bronze">🥉 青铜</span>
+      <div class="d-time">30秒/天</div>
+      <div class="d-desc">改个签挂那就行<br>适合：先试试看</div>
+    </div>
+    <div class="diff-card">
+      <span class="d-badge d-gold">🥈 黄金</span>
+      <div class="d-time">3分钟/天</div>
+      <div class="d-desc">个签 + 朋友圈 + 私聊5人<br>适合：认真做</div>
+    </div>
+    <div class="diff-card">
+      <span class="d-badge d-diamond">🥇 钻石</span>
+      <div class="d-time">10分钟/天</div>
+      <div class="d-desc">全平台铺开引流<br>适合：当副业赚钱</div>
+    </div>
   </div>
-  <div class="faq-item">
-    <div class="q">Q：会影响我的账号吗？</div>
-    <div class="a">不会。个签只引导关注公众号，不放链接、不放二维码、不放微信号，安全合规。</div>
+  <div class="callout">💡 建议所有人从<strong>青铜</strong>开始。改个签挂一周，看到效果再升级。</div>
+</section>
+
+<!-- ══════ 话术库 ══════ -->
+<section>
+  <h2>📣 现成话术，复制就用</h2>
+
+  <h3>朋友圈文案（每天发 1 条）</h3>
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyBlock(this)">复制</button>
+    最近在做一个游戏搭子群～
+    王者、和平、瓦、三角洲、第五人格都可以安排。
+    真博主｜真颜值｜真声音｜真人陪玩
+    想进群的，微信搜「麦快乐」公众号，发送 <span class="num">14625</span> 自动进群～
   </div>
-  <div class="faq-item">
-    <div class="q">Q：怎么知道哪些粉丝是我带来的？</div>
-    <div class="a">每个博主有专属编号，粉丝输入你的编号进群，系统自动记录，收益精准归因。</div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyBlock(this)">复制</button>
+    一个人打游戏太无聊的，可以来麦快乐看看～
+    有博主陪玩、聊天开黑、娱乐组队。
+    王者 / 和平 / 瓦 / 三角洲 / 第五人格都可以。
+    想进群？微信搜「麦快乐」公众号，发送 <span class="num">14625</span>～
   </div>
-  <div class="faq-item">
-    <div class="q">Q：钱什么时候到账？</div>
-    <div class="a">每周一支付宝自动转账，不拖欠。</div>
+
+  <h3>私聊话术（挑顺手的用）</h3>
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyBlock(this)">复制</button>
+    你平时玩游戏嘛？
+    我们这边有个麦快乐游戏搭子群，王者、和平、瓦、三角洲、第五人格都可以安排。
+    想进群的话，微信搜「麦快乐」公众号，发送 <span class="num">14625</span> 就行～
   </div>
-  <div class="faq-item">
-    <div class="q">Q：我是颜值博主但不太玩游戏，能做吗？</div>
-    <div class="a">太能了。你的粉丝里有很多游戏玩家，你只需要告诉他们"我这有个游戏搭子群"，他们自己就去搜了。</div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyBlock(this)">复制</button>
+    你平时打游戏不？
+    我们这边有真博主陪玩，不是网图，也不是变声器。
+    想找游戏搭子的话，微信搜「麦快乐」公众号，发送 <span class="num">14625</span> 进群看看。
+  </div>
+
+  <h3>客户常问，这样回</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>客户问</th><th>你回答</th></tr></thead>
+      <tbody>
+        <tr><td>"怎么进群？"</td><td>微信搜「麦快乐」公众号，发送我的编号 14625，自动弹出群码～</td></tr>
+        <tr><td>"怎么收费？"</td><td>具体价格进群看公告或问客服，先进群了解～</td></tr>
+        <tr><td>"真的假的？"</td><td>我们主打真博主、真颜值、真声音，不是网图变声器，进群自己看。</td></tr>
+        <tr><td>"有什么游戏？"</td><td>王者、和平、无畏契约、三角洲行动、第五人格。</td></tr>
+        <tr><td>"能包赢吗？"</td><td>可以进群看看，客服帮你匹配合适的陪玩～</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
-<div class="cta">
-  <h3>🌸 现在就开始</h3>
-  <p>联系群主领取你的专属编号，30 秒改个签，开始躺赚</p>
-  <p style="font-size: 1.1rem; font-weight: 700;">👇 进群找群主 👇</p>
-</div>
+<!-- ══════ 不同平台 ══════ -->
+<section>
+  <h2>🌐 不同平台怎么引流</h2>
+  <div class="tips-row">
+    <div class="tip-card">
+      <h4>📱 微信朋友圈</h4>
+      <p>每天1条，别刷屏。重点是"搜麦快乐公众号+你的编号"。配图找群主拿。</p>
+    </div>
+    <div class="tip-card">
+      <h4>💬 微信私聊</h4>
+      <p>每天私聊5个打游戏的好友。开场先问"你平时玩游戏嘛？"结尾引导搜公众号。</p>
+    </div>
+    <div class="tip-card">
+      <h4>🎮 游戏内好友</h4>
+      <p>打完说："刚才打得挺开心的，我们有个博主搭子群，微信搜麦快乐公众号就能进"</p>
+    </div>
+    <div class="tip-card">
+      <h4>📹 抖音 / 小红书</h4>
+      <p>看到游戏内容私信："我们这边有游戏搭子群，真博主陪玩，微信搜麦快乐公众号～"</p>
+    </div>
+    <div class="tip-card">
+      <h4>💻 QQ群 / 游戏群</h4>
+      <div class="callout-red" style="margin:4px 0 8px; padding:6px 10px; font-size:0.78rem;">⚠️ 别刷广告，会被踢</div>
+      <p>轻一点："有想找搭子的吗？王者和平瓦三角洲第五人格都行，微信搜麦快乐公众号"</p>
+    </div>
+  </div>
+</section>
 
+<!-- ══════ 禁忌 ══════ -->
+<section>
+  <h2>❌ 这些话绝对不要说</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>不要说</th><th>为什么</th><th>应该说</th></tr></thead>
+      <tbody>
+        <tr><td>"包赢""保证上分"</td><td>做不到会被投诉</td><td>可以进群看看，客服帮你匹配</td></tr>
+        <tr><td>"包满意"</td><td>满意度是主观的</td><td>先进群了解一下适不适合你</td></tr>
+        <tr><td>"随便挑女生"</td><td>物化陪玩师，引反感</td><td>客服会根据你玩的游戏帮你匹配</td></tr>
+        <tr><td>"很便宜"</td><td>降低品牌价值</td><td>具体价格看群公告</td></tr>
+        <tr><td>"什么都能安排"</td><td>过度承诺</td><td>目前主要是王者、和平、瓦、三角洲、第五人格</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><strong>核心原则：不承诺、不包揽、不夸大。</strong>你只负责引流，剩下的交给团队。</div>
+</section>
+
+<!-- ══════ 每日清单 ══════ -->
+<section>
+  <h2>✅ 每日执行清单</h2>
+  <div class="diff-row">
+    <div class="diff-card">
+      <span class="d-badge d-bronze">🥉 青铜 · 30秒</span>
+      <ul class="checklist" style="text-align:left; margin-top:8px;">
+        <li>发 1 条朋友圈</li>
+        <li>有人问就引导搜公众号</li>
+      </ul>
+    </div>
+    <div class="diff-card">
+      <span class="d-badge d-gold">🥈 黄金 · 3分钟</span>
+      <ul class="checklist" style="text-align:left; margin-top:8px;">
+        <li>发 1 条朋友圈</li>
+        <li>私聊 5 个游戏好友</li>
+        <li>有人问就引导搜公众号</li>
+      </ul>
+    </div>
+    <div class="diff-card">
+      <span class="d-badge d-diamond">🥇 钻石 · 10分钟</span>
+      <ul class="checklist" style="text-align:left; margin-top:8px;">
+        <li>发 1 条朋友圈</li>
+        <li>私聊 10 个游戏好友</li>
+        <li>游戏内拉 3-5 人</li>
+        <li>抖音/小红书/QQ群分发</li>
+        <li><strong style="color:var(--pink);">目标：日拉10人进群</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 战报 ══════ -->
+<section>
+  <h2>🏆 每日战报 & 激励</h2>
+  <p style="font-size:0.9rem; color:var(--muted);">每天推客群里会发战报，所有人能看到谁拉了多少人、赚了多少钱：</p>
+  <div class="code-block" style="text-align:left;">
+📊 昨日推客战报
+🥇 @小明 拉 8 人进群，3 人下单，预估收益 +24 元
+🥈 @小红 拉 5 人进群，1 人下单，预估收益 +8 元
+🥉 @小刚 拉 3 人进群，暂未下单
+
+🔥 昨日总进群：47 人
+💰 昨日总流水：1,280 元
+💸 推客总分润：51.2 元
+  </div>
+  <p style="text-align:center; margin-top:10px;"><strong style="color:var(--pink);">每周一支付宝到账，晒到账截图额外红包奖励。</strong></p>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section>
+  <h2>🙋 你可能还想问</h2>
+  <div class="faq-item">
+    <div class="q">Q：需要我露脸打游戏吗？</div>
+    <div class="a">不需要。你只负责引流，陪玩交付由 2000+ 颜值陪玩师完成。</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Q：会影响我的账号吗？会被封吗？</div>
+    <div class="a">不会。个签只引导关注公众号，不挂链接、不挂二维码、不挂微信号，完全合规。</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Q：怎么知道哪些粉丝是我带来的？</div>
+    <div class="a">每个博主有专属编号。粉丝输入你的编号进群，系统自动记录，收益精准归你。</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Q：钱什么时候到账？</div>
+    <div class="a">每周一支付宝自动转账。你的编号带来的玩家只要在消费，你就一直有钱拿。</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Q：我是颜值博主但不玩游戏，能做吗？</div>
+    <div class="a">太能了。你的粉丝里有大量游戏玩家，你只需要说"我这有个游戏搭子群"，他们就去了。</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Q：不想做了怎么办？</div>
+    <div class="a">随时改掉个签就行。没有任何绑定、没有合同、没有违约金。</div>
+  </div>
+</section>
+
+<!-- ══════ CTA ══════ -->
+<div class="cta">
+  <h3>🌸 现在开始</h3>
+  <p>联系群主，领你的专属编号，30 秒改个签，开始躺赚</p>
+  <p style="font-size:1rem; font-weight:700; margin-top:10px;">👇 进群找群主领编号 👇</p>
 </div>
 
 <div class="footer">
   <p>麦快乐 · 颜值博主合作计划</p>
+  <p style="margin-top:4px;">有疑问随时在群里 @群主</p>
+</div>
+
 </div>
 
 <script>
